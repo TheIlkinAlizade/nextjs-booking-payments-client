@@ -49,7 +49,7 @@ export default function SlotsPage() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.heading}>Available Slots</h1>
+      <h1 className={styles.heading}>Available Consultation Sessions</h1>
 
       {error && <p className={styles.error}>{error}</p>}
 

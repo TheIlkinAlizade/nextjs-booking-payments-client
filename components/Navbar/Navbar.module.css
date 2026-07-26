@@ -1,0 +1,53 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 2rem;
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #111827;
+}
+
+.link {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.link:hover {
+  color: #111827;
+}
+
+.userName {
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.logoutButton {
+  border: none;
+  background: none;
+  font-size: 0.875rem;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logoutButton:hover {
+  text-decoration: underline;
+}
