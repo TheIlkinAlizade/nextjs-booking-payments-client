@@ -1,0 +1,90 @@
+.page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.heading {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.error {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+.empty {
+  color: #6b7280;
+}
+
+.loading {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.slotTitle {
+  font-weight: 500;
+  color: #111827;
+}
+
+.slotTime {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.slotPrice {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.button {
+  border-radius: 0.25rem;
+  background-color: #2563eb;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #1d4ed8;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.link {
+  font-size: 0.875rem;
+  color: #2563eb;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
