@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Consultment Booking — Frontend
 
-## Getting Started
+Frontend for a consultation booking and payments app. Users browse available sessions, book one, and pay through Stripe Checkout. Admins can create and manage sessions from the UI.
 
-First, run the development server:
+Built with Next.js (App Router) and TypeScript.
+
+**Live demo:** _coming soon_
+**Backend repo:** [springboot-booking-payments-api](https://github.com/TheIlkinAlizade/springboot-booking-payments-api)
+
+---
+
+## What it does
+
+- Register / log in (JWT-based auth against the backend)
+- Browse available consultation sessions, no login required
+- Log in and book a session — redirects to Stripe Checkout to pay
+- After payment, a confirmation page checks the booking status and shows when it's confirmed
+- "My Bookings" page shows a user's booking history and status
+- Admin-only panel to create new sessions (title, time, price) and cancel existing ones
+
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router), TypeScript |
+| Styling | CSS Modules |
+| Auth state | React Context, JWT stored in `localStorage` |
+| API | Fetches directly from the Spring Boot backend |
+| Deployment | Vercel |
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Home page |
+| `/login` | Log in |
+| `/register` | Create an account |
+| `/slots` | Browse available sessions, book one |
+| `/bookings` | Logged-in user's own bookings |
+| `/booking/success` | Landing page after Stripe payment succeeds; polls for confirmation |
+| `/booking/cancel` | Landing page if payment is cancelled |
+| `/admin` | Admin-only — create and cancel sessions |
+| `/payments/{bookingId}` (via API) | Used internally to check if a booking's payment has cleared |
+
+## Prerequisites
+
+- Node.js 18+
+- The [backend API](https://github.com/TheIlkinAlizade/springboot-booking-payments-api) running locally (or a deployed URL)
+
+## Setup
+
+### 1. Clone and install
+
+```bash
+git clone https://github.com/TheIlkinAlizade/nextjs-booking-payments-client.git
+cd nextjs-booking-payments-client
+npm install
+```
+
+### 2. Set environment variables
+
+```bash
+cp .env.example .env.local
+```
+
+Set `NEXT_PUBLIC_API_URL` to wherever the backend is running, e.g.:
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:8080
+```
+
+### 3. Run it
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App runs at `http://localhost:3000`. Make sure the backend is running first, otherwise pages that fetch data will fail.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Testing a real booking
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To fully test booking + payment, the backend needs a Stripe test-mode key and its webhook listener running — see the [backend README](https://github.com/TheIlkinAlizade/springboot-booking-payments-api) for that setup. Without it, a booking will stay stuck in "Confirming your payment..." since nothing tells the backend the payment succeeded.
 
-## Learn More
+## Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+| Variable | Description |
+|---|---|
+| `NEXT_PUBLIC_API_URL` | Base URL of the backend API |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Route guards (e.g. the admin page redirecting non-admins) are client-side only, for UX. The actual access control is enforced by the backend — the frontend just reflects it.
+- Booking a slot briefly locks it as `BOOKED` even before payment completes, to prevent two people booking the same session at once. If checkout is abandoned, the backend automatically releases it after a timeout.
 
-## Deploy on Vercel
+## Related repos
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Backend: [springboot-booking-payments-api](https://github.com/TheIlkinAlizade/springboot-booking-payments-api)
