@@ -1,10 +1,10 @@
-# Consultment Booking — Frontend
+# Booking & Payments API — Frontend
 
-Frontend for a consultation booking and payments app. Users browse available sessions, book one, and pay through Stripe Checkout. Admins can create and manage sessions from the UI.
+Next.js frontend for the [Booking & Payments API](https://github.com/TheIlkinAlizade/springboot-booking-payments-api). Users browse available consultation sessions, book one, and pay through Stripe Checkout. Admins can create and manage sessions from the UI.
 
 Built with Next.js (App Router) and TypeScript.
 
-**Live demo:** _coming soon_
+**Live demo:** _not planned for now — see setup instructions below to run locally_
 **Backend repo:** [springboot-booking-payments-api](https://github.com/TheIlkinAlizade/springboot-booking-payments-api)
 
 ---
